@@ -51,7 +51,7 @@ docker run -e PASSWORD=<password> \
 	-p 8787:8787 \
 	parsboy66/scrna_pgp
 ```
-then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!.\
+then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!
 
 and to run R :
 ```{r}
@@ -59,14 +59,14 @@ docker run -it --user parsboy66/scrna_pgp R
 ```
 
 ## modifying the image
-inorder to modify the Docker file there are 2 ways :\
+inorder to modify the Docker file there are 2 ways.\
 1. changing the recepie of that and rebuild the image again.\
-\
+
 2. Running R , installing new libraries and before closing the R session in CMD commit the image with the new name and save it.\
 
-i use seconed way most of the time. \
-to do commit and create new image:\
-\
+i use seconed way most of the time.\
+to do commit and create new image:
+
 ```{r}
 first to commit the new image you need hash number
 run " docker ps" to get the hash number and then:
@@ -79,11 +79,11 @@ singularity image was built based on the docker image and its in
 ```{r}
 /data/PGP/niman/snrna.sif
 ```
-to run "R", you can use this command:\
+to run "R", you can use this command:
 
 ```{r}
 singularity exec --bind /kk /xx R
 ```
-kk is your home directory\
-xx is the singularity image directory\
+kk is your home directory.\
+xx is the singularity image directory.\
 

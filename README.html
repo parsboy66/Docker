@@ -80,22 +80,20 @@
 <pre class="{r}"><code>docker run -e PASSWORD=&lt;password&gt; \
     -p 8787:8787 \
     parsboy66/scrna_pgp</code></pre>
-<p>then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!.<br />
-</p>
+<p>then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!</p>
 <p>and to run R :</p>
 <pre class="{r}"><code>docker run -it --user parsboy66/scrna_pgp R</code></pre>
 </div>
 <div id="modifying-the-image" class="section level2">
 <h2>modifying the image</h2>
-<p>inorder to modify the Docker file there are 2 ways :<br />
-1. changing the recepie of that and rebuild the image again.<br />
-<br />
-2. Running R , installing new libraries and before closing the R session in CMD commit the image with the new name and save it.<br />
+<p>inorder to modify the Docker file there are 2 ways : 1. changing the recepie of that and rebuild the image again.<br />
 </p>
+<ol start="2" style="list-style-type: decimal">
+<li>Running R , installing new libraries and before closing the R session in CMD commit the image with the new name and save it.<br />
+</li>
+</ol>
 <p>i use seconed way most of the time.<br />
-to do commit and create new image:<br />
-<br />
-</p>
+to do commit and create new image:</p>
 <pre class="{r}"><code>first to commit the new image you need hash number
 run &quot; docker ps&quot; to get the hash number and then:
 docker commit &lt;id&gt; &lt;username&gt;/&lt;imagename&gt;:&lt;tagname&gt;
@@ -107,11 +105,10 @@ id = is the hash number
 <h1>running R on the server</h1>
 <p>singularity image was built based on the docker image and its in</p>
 <pre class="{r}"><code>/data/PGP/niman/snrna.sif</code></pre>
-<p>to run “R”, you can use this command:<br />
-</p>
+<p>to run “R”, you can use this command:</p>
 <pre class="{r}"><code>singularity exec --bind /kk /xx R</code></pre>
-<p>kk is your home directory<br />
-xx is the singularity image directory<br />
+<p>kk is your home directory.<br />
+xx is the singularity image directory.<br />
 </p>
 </div>
 
