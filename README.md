@@ -41,7 +41,7 @@ docker run --rm -d parsboy66/rsudio:scrna_PGP
 # R docker image is prepared on Docker Hub 
 i prepared a docker image based on R v4.0.3 you can access it by running:\
 ```{r}
-docker pull parsboy66/scrna_pgp
+docker pull  parsboy66/rsudio:scrna_PGP
 ```
 
 ## running interactive R session or R command from Docker
@@ -49,13 +49,13 @@ to run R interactive session:
 ```{r}
 docker run -e PASSWORD=<password> \
 	-p 8787:8787 \
-	parsboy66/scrna_pgp
+  parsboy66/rsudio:scrna_PGP
 ```
 then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!
 
 and to run R :
 ```{r}
-docker run -it --user parsboy66/scrna_pgp R
+docker run -it --user parsboy66/rsudio:scrna_PGP R
 ```
 
 ## modifying the image
