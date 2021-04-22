@@ -25,7 +25,7 @@ Docker build . -t "name of your container"
 
 for instance i used:
 ```{r}
-Docker build . -t parsboy66/rsudio:scrna_PGP
+Docker build . -t parsboy66/rstudio:4.0.3
 ```
 
 it takes plenty of time to make this image. 
@@ -33,7 +33,7 @@ it takes plenty of time to make this image.
 ## Running your image
 Now that you have an image you can start creating containers from it. This can be done from the Terminal/Bash as well. Run the following command to start your container:
 ```{r}
-docker run --rm -d parsboy66/rsudio:scrna_PGP
+docker run --rm -d parsboy66/rstudio:4.0.3
 ```
 --rm denotes that after stopping the container you want to remove it, which i find helpful.\
 -d denotes that this container will run detached from any Terminal session. Now you can use your Terminal session for other things.
@@ -41,7 +41,7 @@ docker run --rm -d parsboy66/rsudio:scrna_PGP
 # R docker image is prepared on Docker Hub 
 i prepared a docker image based on R v4.0.3 you can access it by running:\
 ```{r}
-docker pull  parsboy66/rsudio:scrna_PGP
+docker pull  parsboy66/rstudio:4.0.3
 ```
 
 ## running interactive R session or R command from Docker
@@ -49,19 +49,18 @@ to run R interactive session:
 ```{r}
 docker run -e PASSWORD=<password> \
 	-p 8787:8787 \
-  parsboy66/rsudio:scrna_PGP
+  parsboy66/rstudio:4.0.3
 ```
 then on the explorer address bar type localhost:8787 and there you go! inter the username (by default: rstudio) and selected password and enjoy!
 
 and to run R :
 ```{r}
-docker run -it --user parsboy66/rsudio:scrna_PGP R
+docker run -it --user parsboy66/rstudio:4.0.3 R
 ```
 
 ## modifying the image
 inorder to modify the Docker file there are 2 ways.\
 1. changing the recepie of that and rebuild the image again.\
-
 2. Running R , installing new libraries and before closing the R session in CMD commit the image with the new name and save it.\
 
 i use seconed way most of the time.\
@@ -75,9 +74,16 @@ id = is the hash number
 
 ```
 # running R on the server
+
+As we can not run docker images directly on the server first we have to change it to the singularity image.\
+```{r}
+singularity pull --name XXXXXX docker://parsboy66/rstudio:4.0.3
+```
+
+
 singularity image was built based on the docker image and its in 
 ```{r}
-/data/PGP/niman/snrna.sif
+/data/PGP/niman/rs43.simg
 ```
 to run "R", you can use this command:
 
@@ -86,4 +92,9 @@ singularity exec --bind /kk /xx R
 ```
 kk is your home directory.\
 xx is the singularity image directory.\
+
+to run "Rstudio", you can use this command:
+```{r}
+rstudio-run --ncpus 4  --queue nocg_workq  --mem 4g --img <image address> 
+```
 
